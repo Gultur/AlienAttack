@@ -1,7 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://kywhh20nokik"]
+[gd_scene load_steps=9 format=3 uid="uid://kywhh20nokik"]
 
 [ext_resource type="Texture2D" uid="uid://cbvj1t8e4uvtq" path="res://assets/textures/rocket.png" id="1_12b2p"]
 [ext_resource type="Script" path="res://scripts/rocket.gd" id="1_lmv6x"]
+
+[sub_resource type="Gradient" id="Gradient_gw0dy"]
+offsets = PackedFloat32Array(0, 0.214765, 0.463087, 0.718121, 1)
+colors = PackedColorArray(1, 0.568627, 0, 0, 0.980392, 0.443137, 0.215686, 0.588235, 0.961409, 0.304251, 0.463087, 1, 0.941176, 0.160784, 0.717647, 0.588235, 0.917647, 0, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_44i40"]
+gradient = SubResource("Gradient_gw0dy")
+
+[sub_resource type="Curve" id="Curve_2thy5"]
+_data = [Vector2(0.0222222, 1), 0.0, 0.0, 0, 0, Vector2(0.955555, 0.0105263), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e1mbe"]
+curve = SubResource("Curve_2thy5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s3ln2"]
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_box_extents = Vector3(1, 8, 1)
+particle_flag_disable_z = true
+spread = 10.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = -200.0
+initial_velocity_max = -200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 20.0
+scale_max = 20.0
+scale_curve = SubResource("CurveTexture_e1mbe")
+color_ramp = SubResource("GradientTexture1D_44i40")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rxx0l"]
 radius = 15.0
@@ -11,6 +41,12 @@ height = 74.0
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_lmv6x")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+position = Vector2(-35, -1)
+amount = 75
+process_material = SubResource("ParticleProcessMaterial_s3ln2")
+lifetime = 0.2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.6, 0.6)

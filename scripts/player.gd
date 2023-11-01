@@ -11,6 +11,8 @@ var rocket_scene: PackedScene = preload("res://scenes/rocket.tscn") as PackedSce
 @onready var rocket_container: Node = $RocketContainer 
 
 
+signal took_damage
+
 func _process(_delta):
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
@@ -55,3 +57,9 @@ func clamp_position() -> void:
 #	global_position.y = clampf(global_position.y, 0, window_size.y)
 	
 	global_position = global_position.clamp(Vector2.ZERO, window_size)
+
+func take_damage() -> void:
+	took_damage.emit()
+
+func die() -> void:
+	queue_free()

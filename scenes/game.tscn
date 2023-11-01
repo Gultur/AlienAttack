@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ukadv70scsuh"]
+[gd_scene load_steps=10 format=3 uid="uid://ukadv70scsuh"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_fdces"]
 [ext_resource type="Texture2D" uid="uid://b7qmg4xjhmkt3" path="res://assets/textures/bg.png" id="1_x6852"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cfetp7httgilr" path="res://scenes/enemy_spawner.tscn" id="4_h81m6"]
 [ext_resource type="AudioStream" uid="uid://b75irpxedgvt3" path="res://assets/audio/hit.wav" id="6_nsino"]
 [ext_resource type="AudioStream" uid="uid://kscpfvtvk3lt" path="res://assets/audio/explode.wav" id="7_not21"]
+[ext_resource type="PackedScene" uid="uid://vmbcpbyla3on" path="res://scenes/path_enemy.tscn" id="8_1024w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_asge2"]
 size = Vector2(37, 740)
@@ -43,6 +44,8 @@ stream = ExtResource("6_nsino")
 
 [node name="PlayerTakeDommageSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_not21")
+
+[node name="PathEnemy" parent="." instance=ExtResource("8_1024w")]
 
 [connection signal="enemy_spawned" from="EnemySpawner" to="." method="_on_enemy_spawner_enemy_spawned"]
 [connection signal="took_damage" from="Player" to="." method="_on_player_took_damage"]

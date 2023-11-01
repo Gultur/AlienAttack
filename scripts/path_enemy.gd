@@ -4,6 +4,7 @@ class_name PathEnemy
 @onready var path_follow = $PathFollow2D
 @onready var enemy = $PathFollow2D/Enemy
 
+
 func _ready():
 	path_follow.set_progress_ratio(1)
 	

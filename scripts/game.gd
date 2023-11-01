@@ -49,3 +49,9 @@ func update_hud_score() -> void:
 
 func update_hud_lives() -> void:
 	hud.set_lives_label(lives)
+
+
+func _on_enemy_spawner_enemy_path_spawned(enemy_path_instance: Path2D):
+	add_child(enemy_path_instance)
+	var enemy = enemy_path_instance.enemy;
+	enemy.connect("died", _on_enemy_die, enemy.score_value)

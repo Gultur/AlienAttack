@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://vmbcpbyla3on"]
+[gd_scene load_steps=4 format=3 uid="uid://vmbcpbyla3on"]
 
 [ext_resource type="PackedScene" uid="uid://bemporrst3yxf" path="res://scenes/enemy.tscn" id="1_ao44n"]
 [ext_resource type="Script" path="res://scripts/path_enemy.gd" id="1_jjrno"]
-[ext_resource type="Texture2D" uid="uid://381ht4vo07t4" path="res://assets/textures/orb.png" id="2_iu4m8"]
 
 [sub_resource type="Curve2D" id="Curve2D_kyqsw"]
 _data = {
@@ -17,9 +16,7 @@ script = ExtResource("1_jjrno")
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 position = Vector2(-85, 646)
 rotation = -0.200767
-
-[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D"]
-texture = ExtResource("2_iu4m8")
+loop = false
 
 [node name="Enemy" parent="PathFollow2D" instance=ExtResource("1_ao44n")]
 speed = 0

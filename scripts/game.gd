@@ -6,6 +6,9 @@ var score: int = 0
 
 @onready var player = $Player as Player
 @onready var hud = $UI/HUD as HUD
+@onready var enemy_hit_sound = $EnemyHitSound
+@onready var player_take_dommage_sound = $PlayerTakeDommageSound
+
 
 var game_over_scene: PackedScene = preload("res://scenes/game_over_screen.tscn") as PackedScene # for autocomplete
 
@@ -21,6 +24,7 @@ func _on_death_zone_area_entered(area: Area2D) -> void:
 
 func _on_player_took_damage() -> void:
 	lives -= 1
+	player_take_dommage_sound.play()
 	update_hud_lives()
 	if lives <= 0:
 		player.die()
@@ -36,6 +40,8 @@ func _on_enemy_spawner_enemy_spawned(enemy_instance: Enemy) -> void:
 
 func _on_enemy_die(enemy_score_value: int) -> void:
 	score += enemy_score_value
+	enemy_hit_sound.pitch_scale = randf_range(0.7, 1.3)
+	enemy_hit_sound.play()
 	update_hud_score()
 	
 func update_hud_score() -> void:

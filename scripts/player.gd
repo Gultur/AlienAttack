@@ -9,7 +9,7 @@ var rocket_scene: PackedScene = preload("res://scenes/rocket.tscn") as PackedSce
 # using a Node container to avoid rocket movin g when player is moving . No "transform" property
 # could be in the level node
 @onready var rocket_container: Node = $RocketContainer 
-
+@onready var rocket_sound = $RocketSound
 
 signal took_damage
 
@@ -28,6 +28,8 @@ func shoot() -> void:
 	
 	rocket.global_position = rocket_spawn_point.global_position
 	rocket_container.add_child(rocket)
+	rocket_sound.pitch_scale = randf_range(0.7, 1.3)
+	rocket_sound.play()
 
 func move() -> void:
 	if Input.is_action_pressed("move_right"):

@@ -22,3 +22,4 @@ rotation = -0.200767
 texture = ExtResource("2_iu4m8")
 
 [node name="Enemy" parent="PathFollow2D" instance=ExtResource("1_ao44n")]
+speed = 0
